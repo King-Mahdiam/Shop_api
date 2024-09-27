@@ -10,6 +10,12 @@ class Transaction extends Model
     use HasFactory;
 
     protected $fillable = [
-
+        'user_id' ,
+        'order_id' ,
+        'amount' ,
+        'token' ,
+        'trans_id' ,
+        'status' ,
+        'request_from'
     ];
 }
