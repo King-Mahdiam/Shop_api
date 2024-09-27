@@ -21,6 +21,12 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'password' ,
+        'address' ,
+        'phone' ,
+        'postal' ,
+        'province_id' ,
+        'city_id'
     ];
 
     /**
