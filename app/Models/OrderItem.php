@@ -16,4 +16,14 @@ class OrderItem extends Model
         'quantity' ,
         'subtotal'
     ];
+
+    public function order()
+    {
+        return $this->belongsTo(Order::class);
+    }
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
 }
