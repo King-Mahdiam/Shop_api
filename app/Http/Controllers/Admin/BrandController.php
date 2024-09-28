@@ -16,7 +16,12 @@ class BrandController extends ApiResponseController
      */
     public function index()
     {
-
+        $brands = Brand::paginate(5);
+        return $this->SuccessResponse([
+            'brands' => BrandResource::collection($brands) ,
+            'links' => BrandResource::collection($brands)->response()->getData()->links ,
+            'meta' => BrandResource::collection($brands)->response()->getData()->meta ,
+        ] , 200 , 'true');
     }
 
     /**
@@ -26,7 +31,7 @@ class BrandController extends ApiResponseController
     {
         $validator = Validator::make($request->all() , [
            'name' => ['required' , 'string'] ,
-           'display_name' => ['required' , 'string' , 'unique:brands']
+           'display_name' => ['required' , 'string' , 'unique:brands,display_name']
         ]);
 
         if ($validator->fails()) {
@@ -44,24 +49,39 @@ class BrandController extends ApiResponseController
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Brand $brand)
     {
-        //
+        return $this->SuccessResponse($brand , 200 , 'true');
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Brand $brand)
     {
-        //
+        $validator = Validator::make($request->all() , [
+            'name' => ['required' , 'string'] ,
+            'display_name' => ['required' , 'string' , 'unique:brands,display_name,' . $brand->id]
+        ]);
+
+        if ($validator->fails()) {
+            return $this->ErrorResponse(422 , $validator->messages());
+        }
+
+        $brand->update([
+            'name' => $request->name ,
+            'display_name' => $request->display_name
+        ]);
+
+        return $this->SuccessResponse(new BrandResource($brand) , 200 , 'brand updated successful');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Brand $brand)
     {
-        //
+        $data = $brand->delete();
+        return $this->SuccessResponse($data , 200 , 'brand deleted successful');
     }
 }
