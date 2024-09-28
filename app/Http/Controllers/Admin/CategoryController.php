@@ -90,4 +90,10 @@ class CategoryController extends ApiResponseController
         $data = $category->delete();
         return $this->SuccessResponse($data , 200 , 'category deleted successful');
     }
+
+    public function child(Category $category)
+    {
+        return $this->SuccessResponse(new CategoryResource($category->load('child')) , 201);
+    }
+
 }
