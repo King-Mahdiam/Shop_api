@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Admin\CategoryController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +20,4 @@ use App\Http\Controllers\Admin\BrandController;
 //});
 
 Route::apiResource('/brand' , BrandController::class);
+Route::apiResource('/category' , CategoryController::class);
