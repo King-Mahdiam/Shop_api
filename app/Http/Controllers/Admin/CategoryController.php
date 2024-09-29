@@ -96,4 +96,9 @@ class CategoryController extends ApiResponseController
         return $this->SuccessResponse(new CategoryResource($category->load('child')) , 201);
     }
 
+    public function products(Category $category)
+    {
+        return $this->SuccessResponse(new CategoryResource($category->load('products')) , 201);
+    }
+
 }

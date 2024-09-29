@@ -21,7 +21,8 @@ class CategoryResource extends JsonResource
             'parent_id' => $this->parent_id ,
             'name' => $this->name ,
             'text' => $this->text ,
-            'child' => CategoryResource::collection($this->whenLoaded('child'))
+            'child' => CategoryResource::collection($this->whenLoaded('child')) ,
+            'products' => ProductResource::collection($this->whenLoaded('products')->load('images'))
         ];
     }
 }

@@ -24,4 +24,5 @@ Route::apiResource('/brand' , BrandController::class);
 Route::get('/brand/{brand}/products' , [BrandController::class , 'products']);
 Route::apiResource('/category' , CategoryController::class);
 Route::get('/category/{category}/child' , [CategoryController::class , 'child']);
+Route::get('/category/{category}/products' , [CategoryController::class , 'products']);
 Route::apiResource('/product' , ProductController::class);
