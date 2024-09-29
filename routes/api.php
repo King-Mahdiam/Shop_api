@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,3 +23,4 @@ use Illuminate\Support\Facades\Route;
 Route::apiResource('/brand' , BrandController::class);
 Route::apiResource('/category' , CategoryController::class);
 Route::get('/category/{category}/child' , [CategoryController::class , 'child']);
+Route::apiResource('/product' , ProductController::class);
