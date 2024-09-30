@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\PayController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +27,6 @@ Route::apiResource('/category' , CategoryController::class);
 Route::get('/category/{category}/child' , [CategoryController::class , 'child']);
 Route::get('/category/{category}/products' , [CategoryController::class , 'products']);
 Route::apiResource('/product' , ProductController::class);
+
+Route::get('/pay' , [PayController::class , 'pay']);
+Route::get('/verify' , [PayController::class , 'verify']);
